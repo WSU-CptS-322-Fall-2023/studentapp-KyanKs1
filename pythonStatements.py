@@ -1,5 +1,3 @@
-
-
 from app import db
 #create the database file, if it doesn't exist. 
 db.create_all()
@@ -14,6 +12,10 @@ newClass = Class(coursenum='355')
 db.session.add(newClass)
 db.session.commit()
 
+from app.models import Major
+newMajor = Major(name = "Cpts", department = "Voiland College of Engineering")
+db.session.add(newMajor)
+db.session.commit()
 # query and print classes
 Class.query.all()
 Class.query.filter_by(coursenum='322').all()

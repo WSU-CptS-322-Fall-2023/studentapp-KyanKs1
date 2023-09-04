@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from app import app,db
 
 from app.forms import ClassForm
-from app.models import Class
+from app.models import Class,Major
 
 @app.before_request
 def initDB(*args, **kwargs):
