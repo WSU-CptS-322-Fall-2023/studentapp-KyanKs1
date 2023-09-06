@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField , TextAreaField,PasswordField
 from wtforms_sqlalchemy.fields import QuerySelectField
-from wtforms.validators import  ValidationError, Length,DataRequired
-from app.models import Class,Major
+from wtforms.validators import  ValidationError, Length,DataRequired,Email,EqualTo
+from app.models import Class,Major,Student
 
 
 def get_major():
@@ -17,6 +17,28 @@ class ClassForm(FlaskForm):
     title = StringField('Class Title', validators=[DataRequired()])
     major = QuerySelectField('Majors',query_factory = get_major, get_label= get_majorlabel, allow_blank=False )
     submit = SubmitField('Post')
+
+class RegistrationForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    firstname = StringField('First name', validators=[DataRequired()])
+    lastname = StringField('Last Name', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    address = TextAreaField('Address',[Length(min=0, max=200)])
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField('Repeat Password', validators=[DataRequired(),EqualTo('password')])
+    submit = SubmitField('Register')
+
+    def validate_username(self,username):
+        student = Student.query.filter_by(username=username.data).first()
+        if(student is not None):
+                raise ValidationError('Username Taken')
+    
+    def validate_email(self,email):
+        student = Student.query.filter_by(email=email.data).first()
+        if(student is not None):
+                raise ValidationError('Email Taken')
+        
+
 
 
 
