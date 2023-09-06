@@ -2,7 +2,7 @@
 
 
 {% block content %}
-    <h1>Hi, student!</h1>
+    <h1>Hi, {{current_user.firstname}} {{current_user.lastname}}!</h1>
 
         {%for class in classes%}
          {%include '_class.html'%}

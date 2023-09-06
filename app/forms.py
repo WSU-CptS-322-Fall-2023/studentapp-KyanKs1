@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField , TextAreaField,PasswordField
+from wtforms import StringField, SubmitField , TextAreaField,PasswordField,BooleanField
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import  ValidationError, Length,DataRequired,Email,EqualTo
 from app.models import Class,Major,Student
@@ -37,8 +37,12 @@ class RegistrationForm(FlaskForm):
         student = Student.query.filter_by(email=email.data).first()
         if(student is not None):
                 raise ValidationError('Email Taken')
-        
 
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember_me = BooleanField('Remember me')
+    submit = SubmitField('Sign in')
 
 
 
