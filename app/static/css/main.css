@@ -40,3 +40,18 @@ a:hover{
 	background-color: rosybrown;
 	color:  white;
 }
+
+.textinput{
+	padding : 2px;
+	font-family: 'Segoe UI', Tahoma,  Verdana, sans-serif;
+	font: 18px;
+	width: 400px;
+}
+
+.flash-container {
+	background: burlywood;
+	font-family: 'Segoe UI', Tahoma,  Verdana, sans-serif;
+	font-size: 16px;
+	padding: 25px;
+	margin: 10px 0px 10px 0px;
+}

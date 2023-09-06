@@ -8,6 +8,7 @@
         <table>
             <tr>
                 <td><a href="{{ url_for('index') }}" class = "button">Home</a></td>
+                <td><a href="{{ url_for('createclass') }}" class = "button">createclass</a></td>
             </tr>
         </table>
         </div>
@@ -16,7 +17,7 @@
             {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
-                <div>{{ message }}</div>
+                <div class= "flash-container">{{ message }}</div>
                 {% endfor %}
             {% endif %}
             {% endwith %}
