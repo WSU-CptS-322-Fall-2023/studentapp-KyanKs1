@@ -13,7 +13,9 @@
                 <td><a href="{{ url_for('login') }}" class = "button">login</a></td>
                 {% else %}
                 <td><a href="{{ url_for('logout') }}" class = "button">logout</a></td>
+                <td><a href="{{ url_for('display_profile') }}" class = "button">Profile</a></td>
                 <td> Current user is : <span class="useritem">{{ current_user.username}} </span></td>
+
                 {% endif %}
             </tr>
         </table>
