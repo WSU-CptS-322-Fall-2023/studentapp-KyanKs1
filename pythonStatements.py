@@ -1,6 +1,7 @@
 from app import db
+from flask import Flask
 #create the database file, if it doesn't exist. 
-db.create_all()
+db.create_all
 
 # import db models
 from app.models import Class

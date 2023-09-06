@@ -12,4 +12,5 @@ def initDB(*args, **kwargs):
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
 def index():
-    return render_template('index.html', title="Course List")
+    classes = Class.query.order_by(Class.major).all()
+    return render_template('index.html', title="Course List",classes=classes)

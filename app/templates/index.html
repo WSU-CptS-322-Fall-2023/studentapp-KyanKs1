@@ -4,4 +4,7 @@
 {% block content %}
     <h1>Hi, student!</h1>
 
+        {%for class in classes%}
+         {%include '_class.html'%}
+        {% endfor %}
 {% endblock %}
