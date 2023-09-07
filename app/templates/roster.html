@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block content %}
+<h1>
+  {{current_class.major}} - {{current_class.coursenum}} -
+  {{current_class.title}}!
+</h1>
+<table class="coursetable">
+  <thead>
+    <tr>
+      <td width="20%">Name</td>
+      <td width="30%">Email</td>
+      <td width="30%">Address</td>
+      <td width="20%">Student Last Seen</td>
+    </tr>
+  </thead>
+</table>
+{% for student in current_class.roster %}
+    {%include '_student.html' %}
+{% endfor %}
+<br>
+<a href="{{url_for('index')}}" class = "button"> Return to main </a>
+{% endblock %}
