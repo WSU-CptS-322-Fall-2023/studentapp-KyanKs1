@@ -4,7 +4,7 @@ from flask import Flask
 db.create_all
 
 # import db models
-from app.models import Class
+from app.models import Class,Major,enrolled,Student
 
 #create class objects and write them to the database
 newClass = Class(coursenum='322')
@@ -13,7 +13,11 @@ newClass = Class(coursenum='355')
 db.session.add(newClass)
 db.session.commit()
 
-from app.models import Major
+c1 = Class.query.filter_by(coursenum='322').first()
+s1 = Student.query.filter_by(username='kyan').first()
+
+s1.classes.append(c1)
+db.session.commit()
 newMajor = Major(name = "Cpts", department = "Voiland College of Engineering")
 db.session.add(newMajor)
 db.session.commit()
