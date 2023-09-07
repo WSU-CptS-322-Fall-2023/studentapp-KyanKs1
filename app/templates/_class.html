@@ -2,9 +2,9 @@
   <tr>
     <td width="60%">{{class.major}} {{ class.coursenum}} {{class.title}}</td>
     <td width="20%">
-      {% if current_user.is_enrolled == False%}
+      {% if current_user.is_enrolled(class.id) == False%}
       <form action="{{url_for('enroll',classid=class.id)}}" method="post">
-        <input type="submit" value="Enroll" class="button" />
+        <input type="submit" value="Enroll" class="ebutton" />
       </form>
       {% else %}
       <form action="{{url_for('unenroll',classid=class.id)}}" method="post">

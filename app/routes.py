@@ -165,7 +165,6 @@ def unenroll(classid):
     if theClass is None:
         flash("class does not exist")
         return redirect(url_for("index"))
-
     current_user.unenroll(theClass)
     db.session.commit()
     flash("now unEnrolled in {}".format(theClass.title))

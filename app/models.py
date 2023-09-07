@@ -74,12 +74,15 @@ class Student(db.Model, UserMixin):
     
     def unenroll(self, newclass):
      if self.is_enrolled(newclass):
-        db.session.expire(newclass)
         self.classes.remove(newclass)
 
-
-    def is_enrolled(self,newclass):
-        return self.classes.filter(enrolled.c.classid == newclass.id).count() > 0
+    def is_enrolled(self, newclass):
+        if isinstance(newclass, int):
+            return self.classes.filter(enrolled.c.classid == newclass).count() > 0
+        elif isinstance(newclass, Class):
+            return self.classes.filter(enrolled.c.classid == newclass.id).count() > 0
+        else:
+            return False
 
     def enrolledCourses(self):
         return self.classes
