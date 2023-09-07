@@ -72,9 +72,11 @@ class Student(db.Model, UserMixin):
         if not self.is_enrolled(newclass):
             self.classes.append(newclass)
     
-    def unenroll(self,newclass):
-        if self.is_enrolled(newclass):
-            self.classes.remove(newclass)
+    def unenroll(self, newclass):
+     if self.is_enrolled(newclass):
+        db.session.expire(newclass)
+        self.classes.remove(newclass)
+
 
     def is_enrolled(self,newclass):
         return self.classes.filter(enrolled.c.classid == newclass.id).count() > 0

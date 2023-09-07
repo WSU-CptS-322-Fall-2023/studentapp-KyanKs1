@@ -1,21 +1,21 @@
-<table class= "coursetable">
-    <tr>
-            <td width = "60%"> {{class.major}} {{ class.coursenum}} {{class.title}} </td>
-            <td width = "20%">
-                {% if current_user.is_enrolled == False%}
-               <form action= "{{url_for('enroll',classid=class.id)}}" method="post">
-                {{eform.hidden_tag()}}
-                {{eform.submit(value='Enroll',class='button')}}
-               </form>
-               {% else %}
-               <form action= "{{url_for('unenroll',classid=class.id)}}" method="post">
-                {{eform.hidden_tag()}}
-                {{eform.submit(value='Unenroll',class='ebutton')}}
-               </form>
-               {% endif %}
-            </td>
-            <td width = "20%">
-                <a href="{{url_for('roster',classid=class.id)}}"> {{class.major}} {{class.title}} Roster </a>
-            </td>
-    </tr>
-    </table>
+<table class="coursetable">
+  <tr>
+    <td width="60%">{{class.major}} {{ class.coursenum}} {{class.title}}</td>
+    <td width="20%">
+      {% if current_user.is_enrolled == False%}
+      <form action="{{url_for('enroll',classid=class.id)}}" method="post">
+        <input type="submit" value="Enroll" class="button" />
+      </form>
+      {% else %}
+      <form action="{{url_for('unenroll',classid=class.id)}}" method="post">
+        <input type="submit" value="Unenroll" class="button" />
+      </form>
+      {% endif %}
+    </td>
+    <td width="20%">
+      <a href="{{url_for('roster',classid=class.id)}}">
+        {{class.major}} {{class.title}} Roster
+      </a>
+    </td>
+  </tr>
+</table>
