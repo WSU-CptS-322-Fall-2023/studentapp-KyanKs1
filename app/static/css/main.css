@@ -41,6 +41,18 @@ a:hover{
 	color:  white;
 }
 
+.ebutton{
+	width: 80px;
+	font-size: 18px;
+	margin: 10px 0px 0px 0px;
+	border: 1px white solid;
+	background-color: aquamarine;
+}
+.button:hover{
+	background-color: rosybrown;
+	color:  white;
+}
+
 .textinput{
 	padding : 2px;
 	font-family: 'Segoe UI', Tahoma,  Verdana, sans-serif;

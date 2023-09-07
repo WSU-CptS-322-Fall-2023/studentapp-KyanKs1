@@ -5,7 +5,7 @@
 <p> Name: {{student.firstname}}, {{student.lastname}}</p>
 <p> Email: {{student.email}}</p>
 <p> Address: {{student.address}} </p>
-<p> last seen on:{{student.last_seen}} </p>
+<p> last seen on:{{moment(student.last_seen).format('LLL') }} </p>
 <p><b> Enrolled Classes: </b> </p>
 {% for class in student.enrolledCourses() %}
     {%include '_class.html'%}

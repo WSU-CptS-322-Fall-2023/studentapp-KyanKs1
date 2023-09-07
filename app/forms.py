@@ -60,6 +60,8 @@ class EditForm(FlaskForm):
               if(student.id != current_user.id):
                    raise ValidationError('Email confilct')
                    
-              
+class EmptyForm(FlaskForm):
+    submit = SubmitField('Submit')
+
 
 

@@ -77,7 +77,7 @@ class Student(db.Model, UserMixin):
             self.classes.remove(newclass)
 
     def is_enrolled(self,newclass):
-        self.classes.filter(enrolled.c.classid == newclass.id).count > 0
+        return self.classes.filter(enrolled.c.classid == newclass.id).count() > 0
 
     def enrolledCourses(self):
         return self.classes
