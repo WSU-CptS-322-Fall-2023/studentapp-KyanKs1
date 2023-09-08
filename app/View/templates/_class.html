@@ -3,18 +3,18 @@
     <td width="60%">{{class.major}} {{ class.coursenum}} {{class.title}}</td>
     <td width="20%">
       {% if current_user.is_enrolled(class.id) == False%}
-      <form action="{{url_for('enroll',classid=class.id)}}" method="post">
+      <form action="{{url_for('routes.enroll',classid=class.id)}}" method="post">
         <input type="submit" value="Enroll" class="btn btn-success" />
       </form>
       {% else %}
-      <form action="{{url_for('unenroll',classid=class.id)}}" method="post">
+      <form action="{{url_for('routes.unenroll',classid=class.id)}}" method="post">
         <input type="submit" value="Unenroll" class="btn btn-warning" />
       </form>
         Enrolled on {{moment(current_user.getEnrollmentDate(class)).format('LL')}}
       {% endif %}
     </td>
     <td width="20%">
-      <a href="{{url_for('roster',classid=class.id)}}">
+      <a href="{{url_for('routes.roster',classid=class.id)}}">
         {{class.major}} {{class.title}} Roster
       </a>
     </td>

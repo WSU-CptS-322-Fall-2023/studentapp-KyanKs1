@@ -4,7 +4,7 @@ from flask import Flask
 db.create_all
 
 # import db models
-from app.models import Class,Major,enrolled,Student
+from app.Model import Class,Major,enrolled,Student
 
 #create class objects and write them to the database
 newClass = Class(coursenum='322')

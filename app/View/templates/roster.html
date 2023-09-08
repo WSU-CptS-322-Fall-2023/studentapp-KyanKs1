@@ -3,7 +3,7 @@
   {{current_class.major}} - {{current_class.coursenum}} -
   {{current_class.title}}!
 </h1>
-<table class="coursetable">
+<table class="table table-hover">
   <thead>
     <tr>
       <td width="20%">Name</td>
@@ -18,5 +18,5 @@
     {%include '_student.html' %}
 {% endfor %}
 <br>
-<a href="{{url_for('index')}}" class = "button"> Return to main </a>
+<a href="{{url_for('routes.index')}}" class = "button"> Return to main </a>
 {% endblock %}

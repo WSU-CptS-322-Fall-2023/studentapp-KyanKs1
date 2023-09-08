@@ -6,3 +6,6 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'student.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    ROOT_PATH = basedir
+    STATIC_FOLDER = os.path.join(basedir, 'app//View//static')
+    TEMPLATE_FOLDER = os.path.join(basedir,'app//View//templates')

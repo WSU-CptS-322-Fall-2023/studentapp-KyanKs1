@@ -4,13 +4,34 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_moment import Moment
 from flask_bootstrap import Bootstrap
-app = Flask(__name__)
-app.config.from_object(Config)
-db = SQLAlchemy(app)
-bootstrap = Bootstrap(app)
+from config import Config
+db = SQLAlchemy()
+bootstrap = Bootstrap()
 
-login = LoginManager(app)
-login.login_view = 'login'
-moment = Moment(app)
-from app import routes, models, errors
+login = LoginManager()
+login.login_view = 'auth.login'
+
+moment = Moment()
+
+
+
+def create_app(config_class = Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+    app.static_folder = config_class.STATIC_FOLDER
+    app.template_folder = config_class.TEMPLATE_FOLDER
+
+    db.init_app(app)
+    login.init_app(app)
+    moment.init_app(app)
+    bootstrap.init_app(app)
+
+    from app.Controller.errors import errors_blueprint as errors
+    app.register_blueprint(errors)
+    from app.Controller.auth_routes import routes_blueprint as auth
+    app.register_blueprint(auth)
+    from app.Controller.routes import routes_blueprint as routes
+    app.register_blueprint(routes)
+    return app
+
 
