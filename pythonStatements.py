@@ -20,7 +20,8 @@ s1.classes.append(c1)
 db.session.commit()
 newMajor = Major(name = "Cpts", department = "Voiland College of Engineering")
 db.session.add(newMajor)
-db.session.commit()
+db.session.commit() 
+
 # query and print classes
 Class.query.all()
 Class.query.filter_by(coursenum='322').all()

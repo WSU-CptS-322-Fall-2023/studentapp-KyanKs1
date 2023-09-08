@@ -30,7 +30,8 @@ class Major(db.Model):
     name = db.Column(db.String(20), primary_key=True)
     department = db.Column(db.String(150))
     classes = db.relationship("Class", backref="coursemajor", lazy="dynamic")
-
+    studentsinmajor = db.relationship('StudentMajor',back_populates='_major')
+    
     def __repr__(self):
         return "<Major - name: { } - department {}>".format(self.name, self.department)
 
@@ -45,7 +46,7 @@ class Student(db.Model, UserMixin):
     email = db.Column(db.String(128), unique=True, index=True)
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     classes = db.relationship('Enrolled',back_populates = 'studentenrolled')
- 
+    majorsofstudent = db.relationship('StudentMajor',back_populates='_student')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -95,3 +96,10 @@ class Enrolled(db.Model):
     studentenrolled = db.relationship('Student')
     classenrolled = db.relationship('Class')
  
+class StudentMajor(db.Model):
+    studentmajor = db.Column(db.String(20),db.ForeignKey('major.name'),primary_key=True)
+    studentid = db.Column(db.Integer,db.ForeignKey('student.id'),primary_key=True)
+    startdate = db.Column(db.DateTime)
+    primary = db.Column(db.Boolean)
+    _student = db.relationship('Student')
+    _major = db.relationship('Major')
