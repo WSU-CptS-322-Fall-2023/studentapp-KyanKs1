@@ -1,14 +1,14 @@
-<table class="coursetable">
-  <tr>
+<table class="table table-hover">
+  <tr valign = "center">
     <td width="60%">{{class.major}} {{ class.coursenum}} {{class.title}}</td>
     <td width="20%">
       {% if current_user.is_enrolled(class.id) == False%}
       <form action="{{url_for('enroll',classid=class.id)}}" method="post">
-        <input type="submit" value="Enroll" class="ebutton" />
+        <input type="submit" value="Enroll" class="btn btn-success" />
       </form>
       {% else %}
       <form action="{{url_for('unenroll',classid=class.id)}}" method="post">
-        <input type="submit" value="Unenroll" class="button" />
+        <input type="submit" value="Unenroll" class="btn btn-warning" />
       </form>
         Enrolled on {{moment(current_user.getEnrollmentDate(class)).format('LL')}}
       {% endif %}

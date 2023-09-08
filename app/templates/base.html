@@ -1,39 +1,54 @@
-<html>
-    <head>
-       <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-       {{ moment.include_moment() }}
-    </head>
+{% extends 'bootstrap/base.html' %}
+{%import 'bootstrap/wtf.html' as wtf %}
+{% block title %}
+    {% if title %}{{ title }} - Student App {% else %}Welcome to Student App{% endif %}
+{% endblock %}
 
-    <body>
-        <div class ="nav-container">
-        <table>
-            <tr>
-                <td><a href="{{ url_for('index') }}" class = "button">Home</a></td>
-                <td><a href="{{ url_for('createclass') }}" class = "button">createclass</a></td>
-                {% if current_user.is_anonymous%}
-                <td><a href="{{ url_for('login') }}" class = "button">login</a></td>
-                {% else %}
-                <td><a href="{{ url_for('logout') }}" class = "button">logout</a></td>
-                <td><a href="{{ url_for('display_profile') }}" class = "button">Profile</a></td>
-                <td> Current user is : <span class="useritem">{{ current_user.username}} </span></td>
+{% block scripts %}
+    {{ moment.include_moment() }}
+{% endblock %} 
 
-                {% endif %}
-            </tr>
-        </table>
+{% block navbar %}
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('index') }}">Student App</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('index') }}"> Home </a></li>
+                    <li><a href="{{ url_for('createclass') }}"> Create Class </a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_anonymous %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('display_profile') }}">Profile</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
+    </nav>
+{% endblock %}
 
-        <div>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <div class= "flash-container">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-            {% endwith %}
+{% block content %}
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
 
-            {# application content needs to be provided in the content block #}
-            {% block content %} {% endblock %}
-        </div>
-
-    </body>
-</html>
+        {# application content needs to be provided in the app_content block #}
+        {% block app_content %}{% endblock %}
+    </div>
+{% endblock %}
