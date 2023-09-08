@@ -13,7 +13,8 @@
     </tr>
   </thead>
 </table>
-{% for student in current_class.roster %}
+{% for enrollment in current_class.roster %}
+{% set student = enrollment.studentenrolled%}
     {%include '_student.html' %}
 {% endfor %}
 <br>

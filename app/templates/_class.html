@@ -10,6 +10,7 @@
       <form action="{{url_for('unenroll',classid=class.id)}}" method="post">
         <input type="submit" value="Unenroll" class="button" />
       </form>
+        Enrolled on {{moment(current_user.getEnrollmentDate(class)).format('LL')}}
       {% endif %}
     </td>
     <td width="20%">

@@ -7,7 +7,8 @@
 <p> Address: {{student.address}} </p>
 <p> last seen on:{{moment(student.last_seen).format('LLL') }} </p>
 <p><b> Enrolled Classes: </b> </p>
-{% for class in student.enrolledCourses() %}
+{% for enrollment in student.enrolledCourses() %}
+    {% set class = enrollment.classenrolled%}
     {%include '_class.html'%}
 {% endfor %}
 
